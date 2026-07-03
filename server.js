@@ -21,8 +21,6 @@ app.use("/arbitres", arbitreRoutes);
 app.use("/matchs", matchRoutes);
 app.use("/affectations", affectationRoutes);
 
-app.use(errorHandler);
-
 sequelize
 .sync()
 .then(() => {

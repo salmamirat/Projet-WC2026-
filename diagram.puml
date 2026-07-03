@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Arbitre {
+  +id : Integer
+  +nom : String
+  +prenom : String
+  +nationalite : String
+  +confederation : String
+  +categorie : String
+  +experience : Integer
+  +statut : String
+}
+
+class Match {
+  +id : Integer
+  +equipeDomicile : String
+  +equipeExterieur : String
+  +stade : String
+  +villeHote : String
+  +dateMatch : Date
+  +phase : String
+}
+
+class Affectation {
+  +id : Integer
+  +arbitreId : Integer
+  +matchId : Integer
+  +role : String
+}
+
+Arbitre "1" -- "0..*" Affectation
+Match "1" -- "0..*" Affectation
+
+Arbitre "0..*" -- "0..*" Match : belongsToMany
+@enduml
