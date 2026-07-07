@@ -1,0 +1,52 @@
+classDiagram
+    class Arbitre {
+        +int id
+        +string nom
+        +string prenom
+        +string nationalite
+        +enum confederation
+        +enum categorie
+        +int experience
+        +enum statut
+        +date createdAt
+        +date updatedAt
+        +create(data) Static
+        +findByPk(id) Static
+        +findAll(options) Static
+        +update(data, options) Static
+        +destroy(options) Static
+    }
+
+    class Match {
+        +int id
+        +string equipeDomicile
+        +string equipeExterieur
+        +string stade
+        +string villeHote
+        +date dateMatch
+        +enum phase
+        +date createdAt
+        +date updatedAt
+        +create(data) Static
+        +findByPk(id) Static
+        +findAll(options) Static
+        +update(data, options) Static
+        +destroy(options) Static
+    }
+
+    class Affectation {
+        +int id
+        +int arbitreId
+        +int matchId
+        +enum role
+        +date createdAt
+        +date updatedAt
+        +create(data) Static
+        +findByPk(id) Static
+        +findAll(options) Static
+        +update(data, options) Static
+        +destroy(options) Static
+    }
+
+    Arbitre "1" <-- "0..*" Affectation : arbitreId (FK)
+    Match "1" <-- "0..*" Affectation : matchId (FK)

@@ -2,6 +2,8 @@ const Affectation = require("./affectation.model");
 const Arbitre = require("./arbitre.model");
 const Match = require("./match.model");
 
+const User = require("./user.model");
+
 Arbitre.belongsToMany(Match,{
     through:Affectation,
     foreignKey:"arbitreId",
@@ -30,4 +32,4 @@ Match.hasMany(Affectation, {
     foreignKey: "matchId",
 });
 
-module.exports = { Arbitre, Match, Affectation };
+module.exports = { Arbitre, Match, Affectation, User };
