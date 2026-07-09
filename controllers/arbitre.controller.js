@@ -11,15 +11,11 @@ exports.createArbitre = async (req, res, next) => {
 
 exports.getAllArbitres = async (req, res, next) => {
     try {
-        const arbitres = await Arbitre.findAll({
-
-            include:[
-                {
-                    model:Match
-                }
-            ]
-        });
-        res.status(200).json(arbitres);
+const arbitres = await Arbitre.findAll({
+    include: [{ model: Match }]
+});
+res.status(200).json(arbitres);
+ 
     } catch (err) {
         next(err);
     }
@@ -60,7 +56,7 @@ exports.updateArbitre = async (req, res, next) => {
 
         await arbitre.update(req.body);
 
-        res.status(200).json(arbitre);
+       res.status(200).json(arbitre);
 
     } catch (err) {
         next(err);

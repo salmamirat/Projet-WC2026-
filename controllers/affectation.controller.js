@@ -5,6 +5,13 @@ exports.createAffectation = async (req, res, next) => {
         const affectation = await Affectation.create(req.body);
         res.status(201).json(affectation);
     } catch (err) {
+           if(err.name==="SequelizeUniqueConstraintError"){
+
+            return res.status(400).json({
+                message:"Cette affectation existe déjà"
+            });
+
+        }
         next(err);
     }
 };

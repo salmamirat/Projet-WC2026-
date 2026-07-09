@@ -60,7 +60,7 @@ exports.updateMatch = async (req, res, next) => {
 
         await match.update(req.body);
 
-        res.status(200).json(match);
+   res.status(200).json(match);
 
     } catch (err) {
         next(err);
@@ -90,6 +90,7 @@ exports.deleteMatch = async (req, res, next) => {
 
 exports.getMatchArbitres = async (req, res, next) => {
     try {
+
         const match = await Match.findByPk(req.params.id, {
             include: [
                 {
