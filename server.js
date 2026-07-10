@@ -10,6 +10,7 @@ const affectationRoutes = require("./routes/affectation.routes");
 const logger = require("./middlewares/logger.middleware");
 const errorHandler = require("./middlewares/error.middleware");
 
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(logger);
 app.use("/arbitres", arbitreRoutes);
 app.use("/matchs", matchRoutes);
 app.use("/affectations", affectationRoutes);
+app.use("/auth", authRoutes);
 
 sequelize
 .sync()

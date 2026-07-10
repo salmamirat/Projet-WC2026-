@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const validate = require("../middlewares/validate.middleware");
 const affectationController = require("../controllers/affectation.controller");
+const validate = require("../middlewares/validate.middleware");
+const { authenticate } = require("../middlewares/auth.middleware");
+const { authorize } = require("../middlewares/role");
 
-router.post("/",validate, affectationController.createAffectation);
-router.get("/", affectationController.getAllAffectations);
-router.get("/:id", affectationController.getAffectationById);
-router.put("/:id", validate, affectationController.updateAffectation);
-router.delete("/:id", affectationController.deleteAffectation);
+router.post("/", authenticate, authorize("admin", "commissaire"),validate, affectationController.createAffectation);
+router.get("/",authenticate, affectationController.getAllAffectations);
+router.get("/:id", authenticate, affectationController.getAffectationById);
+router.put("/:id", authenticate,authorize("admin", "commissaire"), validate, affectationController.updateAffectation);
+router.delete("/:id", authenticate, authorize("admin"), affectationController.deleteAffectation);
 
 module.exports = router;

@@ -42,7 +42,12 @@ const Match = sequelize.define("Match", {
 },
     {
         tableName: "matchs",
-        timestamps: true
+        timestamps: true,
+        indexes:[
+            {
+                fields:["dateMatch"]
+            }
+        ]
     });
 
 module.exports = Match;

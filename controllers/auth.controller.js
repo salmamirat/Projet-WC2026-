@@ -14,11 +14,11 @@ exports.register = async(req, res)=>{
                 message: "Email déjà utilisé"
             });
         }
-        const hashpassword = await bcrypt.hash(password, 10);
+        const hashepassword = await bcrypt.hash(password, 10);
         const newuser = await User.create({
             nom,
             email,
-            password:hashpassword,
+            password:hashepassword,
             role
         });
         res.status(201).json({
@@ -46,11 +46,12 @@ exports.login = async (req,res)=>{
                 message:"Email ou mot de passe incorrect"
             });
         }
-      const passwordCorrect = await bcrypt.compare(
+ const isPasswordValid = await bcrypt.compare(
     password,
     user.password
 );
-        if(!passwordCorrect){
+
+if (!isPasswordValid) {
             return res.status(401).json({
                 message:"Email ou mot de passe incorrect"
             });
@@ -62,7 +63,7 @@ exports.login = async (req,res)=>{
             },
             process.env.JWT_SECRET,
             {
-                expiresIn:"1h"
+             expiresIn: process.env.JWT_EXPIRES_IN
             }
         );
         return res.json({
@@ -90,7 +91,7 @@ exports.me = async(req,res)=>{
         message: "Utilisateur introuvable"
     });
 }
-        res.json(user);
+      return  res.json(user);
     } catch ( err ) {
         res.status(500).json({
             message:err.message
