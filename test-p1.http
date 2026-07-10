@@ -1,0 +1,91 @@
+### CREATE ARBITRE
+POST http://localhost:3000/arbitres
+Content-Type: application/json
+
+{
+  "nom":"Hakimi",
+  "prenom":"Karim",
+  "nationalite":"Maroc",
+  "confederation":"CAF",
+  "categorie":"Referee",
+  "experience":10,
+  "statut":"actif"
+}
+
+###
+
+### GET ARBITRES
+GET http://localhost:3000/arbitres
+
+###
+
+### GET ARBITRE BY ID
+GET http://localhost:3000/arbitres/1
+
+###
+
+### UPDATE ARBITRE
+PUT http://localhost:3000/arbitres/1
+Content-Type: application/json
+
+{
+  "nom":"Hakimi",
+  "prenom":"Karim",
+  "nationalite":"Maroc",
+  "confederation":"CAF",
+  "categorie":"Referee",
+  "experience":15,
+  "statut":"actif"
+}
+
+###
+
+### DELETE ARBITRE
+DELETE http://localhost:3000/arbitres/1
+
+###
+
+### CREATE MATCH
+POST http://localhost:3000/matchs
+Content-Type: application/json
+
+{
+  "equipeDomicile":"Maroc",
+  "equipeExterieur":"France",
+  "stade":"Hassan II",
+  "villeHote":"Casablanca",
+  "dateMatch":"2026-07-10",
+  "phase":"Groupes"
+}
+
+###
+
+### GET MATCHS
+GET http://localhost:3000/matchs
+
+###
+
+### CREATE AFFECTATION
+POST http://localhost:3000/affectations
+Content-Type: application/json
+
+{
+  "arbitreId":1,
+  "matchId":1,
+  "role":"central"
+}
+
+###
+
+### GET AFFECTATIONS
+GET http://localhost:3000/affectations
+
+###
+
+### MATCH → ARBITRES
+GET http://localhost:3000/matchs/1/arbitres
+
+###
+
+### ARBITRE → MATCHS
+GET http://localhost:3000/arbitres/1/matchs

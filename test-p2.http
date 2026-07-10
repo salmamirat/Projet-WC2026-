@@ -1,0 +1,96 @@
+### REGISTER
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "nom":"Admin",
+  "email":"admin@test.com",
+  "password":"123456",
+  "role":"admin"
+}
+
+###
+
+### LOGIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email":"admin@test.com",
+  "password":"123456"
+}
+
+###
+
+### PROFILE
+GET http://localhost:3000/auth/me
+Authorization: Bearer VOTRE_TOKEN
+
+###
+
+### GET ARBITRES
+GET http://localhost:3000/arbitres
+Authorization: Bearer VOTRE_TOKEN
+
+###
+
+### CREATE ARBITRE
+POST http://localhost:3000/arbitres
+Authorization: Bearer VOTRE_TOKEN
+Content-Type: application/json
+
+{
+  "nom":"Hakimi",
+  "prenom":"Karim",
+  "nationalite":"Maroc",
+  "confederation":"CAF",
+  "categorie":"Referee",
+  "experience":10,
+  "statut":"actif"
+}
+
+###
+
+### CREATE MATCH
+POST http://localhost:3000/matchs
+Authorization: Bearer VOTRE_TOKEN
+Content-Type: application/json
+
+{
+  "equipeDomicile":"Maroc",
+  "equipeExterieur":"France",
+  "stade":"Hassan II",
+  "villeHote":"Casablanca",
+  "dateMatch":"2026-07-10",
+  "phase":"Groupes"
+}
+
+###
+
+### CREATE AFFECTATION
+POST http://localhost:3000/affectations
+Authorization: Bearer VOTRE_TOKEN
+Content-Type: application/json
+
+{
+  "arbitreId":1,
+  "matchId":1,
+  "role":"central"
+}
+
+###
+
+### TEST TOKEN MANQUANT
+GET http://localhost:3000/arbitres
+
+###
+
+### TEST TOKEN INVALIDE
+GET http://localhost:3000/arbitres
+Authorization: Bearer abc123
+
+###
+
+### TEST 404
+GET http://localhost:3000/arbitres/999
+Authorization: Bearer VOTRE_TOKEN
